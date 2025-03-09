@@ -1,0 +1,631 @@
+/* 🔹 Video Container */
+#video-container {
+    position: relative;
+    width: 80%;
+    margin: auto;
+}
+
+/* 🔹 Video Element (Ensure No Zoom-In Issues) */
+video {
+    width: 100%;
+    display: block;
+    object-fit: contain; /* Prevent stretching or zooming */
+}
+
+#caption-controls{
+    padding: 5px;
+    background-color: cornflowerblue;
+}
+/* 🔹 Custom Control Buttons */
+#custom-controls {
+    text-align: center;
+    margin-top: 15px;
+}
+
+#playPauseBtn, #restartBtn {
+    background: #ffcc00;
+    color: #000;
+    font-size: 1.3em;
+    font-weight: bold;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 5px;
+    transition: background 0.3s;
+}
+
+#playPauseBtn:hover, #restartBtn:hover {
+    background: #ffdd44;
+}
+
+/* 🔹 Video Time Display */
+#video-time {
+    font-size: 1.2em;
+    color: #fff;
+    background: #333;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+}
+/* 🔹 Base Overlay Styling */
+.overlay-text {
+    position: absolute;
+    width: auto;
+    max-width: 70%;  /* Ensure text doesn’t take up the whole screen */
+    
+    text-align: center;
+    bottom: 42%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)); /* Modern gradient */
+    color: #fff;
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 2em;
+    font-family: 'Poppins', sans-serif; /* Modern font */
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    display: none;
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+}
+
+/* 🔹 Heading Style */
+.heading {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #ffcc00; /* Attention-grabbing yellow */
+    right: 50%;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 3px 3px 10px rgba(255, 204, 0, 0.8);
+    animation: fadeInSlide 1s ease-in-out;
+}
+
+/* 🔹 List Item Style */
+.list-item {
+    font-size: 2em;
+    font-weight: 600;
+    left: 50%;
+    color: #00ffcc; /* Vibrant cyan for list items */
+    border-left: 5px solid #00ffcc;
+    padding-left: 15px;
+    text-transform: uppercase;
+    /* animation: fadeInScale 1s ease-in-out; */
+    animation: bounceIn 0.8s ease-in-out;  /* Apply bounce effect */
+}
+
+/* 🔹 Staying Heading */
+.staying-heading {
+    position: absolute;
+    top: 2%;
+    left: 50%; 
+    transform: translateX(-50%);
+    font-size: 1.8em;
+    color: #fff;
+    text-shadow: 1px 1px 2px black, 0 0 25px black, 0 0 5px black;
+    padding: 5px 5px;
+    width: 99%;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    animation: fadeInSlideDown 0.8s ease-in-out forwards;
+}
+
+/* 🔹 Staying List Items (appear under staying heading) */
+
+/* 🔹 Staying List Container */
+.staying-list-container {
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+}
+
+/* 🔹 Staying List Item (Displays as a List) */
+.staying-list-item {
+    display: flex;
+    align-items: center;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2px 3px;
+    margin: 2px 0;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.5s ease-in-out;
+    transform: translateX(-20px);
+    animation: fadeInListItem 0.8s ease-in-out forwards;
+}
+
+/* 🔹 Icon Before List Item */
+.staying-list-item::before {
+    content: "✔️";  /* Checkmark Icon */
+    font-size: 1.2em;
+    margin-right: 12px;
+    color: #00ffcc;  /* Cyan color for icon */
+}
+
+/* 🔹 Apply the animation */
+.fade-in-slide-down {
+    animation: fadeInSlideDown 0.8s ease-in-out forwards;
+}
+
+/* Smooth Fade-In + Slide Down for Headings */
+@keyframes fadeInSlideDown {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* Staggered Fade-In + Slide Right for List Items */
+@keyframes fadeInListItem {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Glowing Effect for Heading */
+@keyframes glowEffect {
+    0% {
+        text-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(255, 204, 0, 1);
+    }
+    100% {
+        text-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
+    }
+}
+
+/* .staying-heading {
+    animation: fadeInSlideDown 1s ease-in-out, glowEffect 2s infinite alternate;
+} */
+@keyframes bounceIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+/* 🔹 Show Overlay with Animation */
+.show {
+    display: block;
+    opacity: 1;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* 🔹 Fade-In Effect */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* 🔹 Hide Overlay with Smooth Exit */
+.hide {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+/* 🔹 Fullscreen Fix */
+#video-container.fullscreen .overlay-text {
+    max-width: 80%;
+    font-size: 3em;
+    bottom: 10%;
+}
+
+/* 🔹 Animations */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulseGlow {
+    0% {
+        text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.9);
+    }
+    100% {
+        text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+    }
+}
+
+/* 🔹 Caption Styling */
+.captions-text {
+    position: absolute;
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 2%;
+    /* background: rgba(0, 0, 0, 0.7); */
+    /* color: #fff; */
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 1.8em;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 10px;
+    opacity: 0;
+    display: none;
+    transition: opacity 0.5s ease-in-out;
+    line-height: 1.5;
+    min-height: 50px; /* 🔹 Prevent shifting */
+    white-space: nowrap; /* 🔹 Ensure text doesn't wrap */
+}
+
+
+/* 🔹 General Caption Styling */
+.preview-captions-text {
+    position: absolute;
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 18px;
+    text-align: center;
+    font-size: 1.8em;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 10px;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    line-height: 1.5;
+    min-height: 50px;
+    white-space: nowrap;
+}
+
+.current-word {
+    /* color: #ffcc00; 
+    text-shadow: 0px 0px 10px rgba(255, 204, 0, 0.8);
+    animation: pulseGlow 0.5s infinite alternate; */
+    padding: 5px;
+}
+
+/* 🔹 Caption Style 1 (Default) */
+.style1 {
+
+    color: #fff;
+    font-size: 1.5em;
+    text-shadow: 0px 0px 10px rgba(50, 50, 49, 0.8);
+    font-weight: bold;
+    text-transform: uppercase;
+
+}
+
+/* 🔹 Highlight Current Word */
+.style1 .current-word {
+    background-color: #512085;
+    border-radius: 4px;
+}
+
+/* 🔹 Caption Style 2 (Yellow Highlight) */
+.style2 {
+    color: rgb(255, 255, 255);
+    font-size: 1.5em;
+    font-weight: bold;
+    text-shadow: 0px 0px 10px rgba(42, 42, 41, 0.8);
+    text-transform: uppercase;
+}
+
+.style2 .current-word {
+    background-color: rgb(231, 74, 105);
+    border-radius: 4px;
+}
+
+/* 🔹 Caption Style 3 (Blue Glow) */
+.style3 {
+    
+    color: #fff;
+    font-size: 1.5em;
+    text-shadow: 0px 0px 10px rgba(50, 50, 49, 0.8);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.style3 .current-word {
+    background-color: #ffcc00;
+    border-radius: 4px;
+}
+/* 🔹 Caption Style 4 (Red Background) */
+.style4 {
+    color: #ffd000;
+    font-size: 1.8em;
+    font-weight:bold;
+    text-transform: uppercase;
+    -webkit-text-stroke: 1px black;
+    font-family: 'Luckiest Guy', cursive;
+}
+
+.style4 .current-word {
+    background-color: rgb(122, 43, 219);
+    border-radius: 4px;
+    border: 1px solid #969693;
+}
+/* 🔹 Caption Style 5 (Green Text) */
+.style5 {
+    color: #fffffd;
+    font-size: 1.5em;
+    font-weight:bold;
+    text-transform: uppercase;
+    -webkit-text-stroke: 1px black;
+    font-family:'Shrikhand';
+}
+
+.style5 .current-word {
+    background-color: #ffcc00;
+    border-radius: 4px;
+}
+/* 🔹 Caption Style 6 (Transparent with Shadow) */
+.style6 {
+    color: #ffffff;
+    font-size: 1.8em;
+    font-weight:bold;
+    text-transform: uppercase;
+    -webkit-text-stroke: 1px black;
+    font-family:'Permanent Marker', cursive;
+}
+
+.style6 .current-word {
+    background-color: rgb(231, 74, 105);
+    border-radius: 4px;
+}
+/* 🔹 Caption Style 7 (Large Bold Text) */
+.style7 {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+/* 🔹 Caption Style 8 (Comic Style) */
+.style8 {
+    background: rgba(255, 140, 0, 0.7);
+    color: black;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 2em;
+}
+
+/* 🔹 Caption Style 9 (Glowing Effect) */
+.style9 {
+    background: rgba(0, 0, 0, 0.85);
+    color: #00ffcc;
+    text-shadow: 0px 0px 15px #00ffcc;
+}
+
+/* 🔹 Caption Style 10 (Luxury Gold) */
+.style10 {
+    background: rgba(0, 0, 0, 0.9);
+    color: gold;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+}
+
+.none {
+    display: none !important;
+}
+
+.block-style {
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    /* transform: translate(-50%, -50%); */
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.2;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: 0;
+    /* transition: opacity 0.5s ease-in-out; */
+    font-size: 1em;
+}
+
+/* 🔹 Caption Style Selection Box */
+#caption-controls {
+    text-align: center;
+    margin-top: 15px;
+}
+
+#captionStyle {
+    font-size: 1.2em;
+    padding: 5px;
+}
+/* 🔹 Show Captions Smoothly */
+.show-caption {
+    display: block;
+    opacity: 1;
+}
+
+/* 🔹 Fancy Block Captions */
+.word-box {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    /* transition: transform 0.03s ease-in-out; */
+    /* animation: popIn 0.5s ease-out; */
+    display: flex ;
+    width: fit-content;
+    margin: 8px;
+}
+
+/* 🔹 Current Spoken Word */
+.block-style .current-word {
+    background-color: rgb(231, 74, 105) !important;
+    color: white !important;
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: transform 0.03s ease-in-out !important;
+}
+
+/* 🔹 Rotating Words for Visual Appeal */
+.angle1 { transform: rotate(-4deg); }
+.angle2 { transform: rotate(4deg); }
+.angle3 { transform: rotate(5deg); }
+.angle4 { transform: rotate(-5deg); }
+.angle5 { transform: rotate(6deg); }
+.angle6 { transform: rotate(-6deg); }
+
+/* 🔹 Pop-In Effect */
+@keyframes popIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* 🔹 Hide Captions Smoothly */
+.hide-caption {
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+
+
+
+/* 🔹 Animations for Captions */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulseGlow {
+    0% { text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.6); }
+    100% { text-shadow: 0px 0px 15px rgba(255, 255, 255, 1); }
+}
+
+/* 🔹 Fullscreen Fix */
+#video-container.fullscreen .captions-text {
+    width: 90%;
+    font-size: 2em;
+    bottom: 5%;
+}
+
+.fontCheck{
+    visibility: hidden; 
+  
+}
+
+/* 🔹 Position Subscribe GIF in Top Left */
+#subscribe-gif {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 200px;  /* Adjust as needed */
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* 🔹 Show GIF */
+.show-gif {
+    opacity: 1;
+}
+
+/* 🔹 Hide GIF */
+.hidden {
+    opacity: 0;
+}
+
+/* 🔹 Word Editor Container */
+#word-editor-container {
+    margin-top: 20px;
+    padding: 10px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* 🔹 Editable Word Box */
+.word-editor-box {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: #fff;
+    cursor: pointer;
+}
+
+/* 🔹 Input Field for Editing */
+.word-editor-box input {
+    width: 80px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    padding: 3px;
+}
+
+/* 🔹 Delete Button */
+.delete-word {
+    margin-left: 5px;
+    color: red;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.word-tooltip {
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 999;
+    font-size: 14px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.copy-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.copy-btn:hover {
+    color: #ffcc00;
+}
