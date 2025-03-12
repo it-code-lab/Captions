@@ -1,81 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video with Timed Overlays</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Impact&family=Bebas+Neue&family=Anton&family=Oswald:wght@700&family=Montserrat:wght@800&family=Poppins:wght@800&family=Raleway:wght@800&family=Lilita+One&family=Bangers&family=Permanent+Marker&family=Luckiest+Guy&family=Black+Han+Sans&family=Rubik+Mono+One&family=Staatliches&family=Playfair+Display:wght@900&family=Archivo+Black&family=Fjalla+One&family=Shrikhand&family=Changa+One&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Impact&family=Bebas+Neue&family=Anton&family=Oswald:wght@700&family=Montserrat:wght@800&family=Poppins:wght@800&family=Raleway:wght@800&family=Lilita+One&family=Bangers&family=Permanent+Marker&family=Luckiest+Guy&family=Black+Han+Sans&family=Rubik+Mono+One&family=Staatliches&family=Playfair+Display:wght@900&family=Archivo+Black&family=Fjalla+One&family=Shrikhand&family=Changa+One&display=swap"
+        rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickr/1.8.2/themes/classic.min.css"/>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickr/1.8.2/themes/classic.min.css" />
+
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+    <div id="container">
+        <!-- 🔹 Video & Overlays -->
+        <div id="video-container">
+            <video id="video" controls>
+                <source src="input_video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <!-- 🔹 Container for All Overlays -->
+            <div id="overlayContainer">
+                <!-- 🔹 Normal Heading & List Item -->
+                <div id="overlayText" class="overlay-text"></div>
 
-    <div id="video-container">
-        <video id="video" controls>
-            <source src="input_video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <!-- 🔹 Container for All Overlays -->
-        <div id="overlayContainer">
-            <!-- 🔹 Normal Heading & List Item -->
-            <div id="overlayText" class="overlay-text"></div>
+                <!-- 🔹 Staying Heading (added dynamically in JS) -->
+                <div id="stayingHeading" class="staying-heading"></div>
 
-            <!-- 🔹 Staying Heading (added dynamically in JS) -->
-            <div id="stayingHeading" class="staying-heading"></div>
+                <!-- 🔹 Staying List Items (added dynamically in JS) -->
+                <div id="stayingListContainer" class="staying-list-container"></div>
+            </div>
 
-            <!-- 🔹 Staying List Items (added dynamically in JS) -->
-            <div id="stayingListContainer" class="staying-list-container"></div>
+
+
+            <!-- Captions Below the Video -->
+            <div id="captions" class="captions-text style1"></div>
+
+            <!-- 🔹 Subscribe GIF Overlay -->
+            <img id="subscribe-gif" src="gif_files/subscribe.gif" alt="Subscribe" class="hidden">
+
         </div>
 
-  
+        <div id="controls-container">
+            <!-- 🔹 Controls on the Right -->
+            <div id="custom-controls">
+                <button id="playPauseBtn">▶ Play</button>
+                <button id="restartBtn">⏪ Restart</button>
+                <span id="video-time">00:00 / 00:00</span>
+            </div>
 
-        <!-- Captions Below the Video -->
-        <div id="captions" class="captions-text style1"></div>
-
-        <!-- 🔹 Subscribe GIF Overlay -->
-        <img id="subscribe-gif" src="gif_files/subscribe.gif" alt="Subscribe" class="hidden">
-
+            <!-- 🔹 Input to Set Number of Caption Words -->
+            <div id="caption-controls">
+                <label for="captionLength">Words per Caption</label>
+                <input type="number" id="captionLength" value="5" min="1" max="10">
+                <label for="captionStyle">Caption Style</label>
+                <select id="captionStyle">
+                    <option value="style1">Style 1</option>
+                    <option value="style2">Style 2</option>
+                    <option value="style3">Style 3</option>
+                    <option value="style4">Style 4</option>
+                    <option value="style5">Style 5</option>
+                    <option value="style6">Style 6</option>
+                    <option value="style7">Style 7</option>
+                    <option value="style8">Style 8</option>
+                    <option value="style9">Style 9</option>
+                    <option value="style10">Style 10</option>
+                    <option value="none">No Caption</option>
+                    <option value="block-style">Block Caption</option>
+                </select>
+            </div>
+        </div>
     </div>
-
-    <div id="custom-controls">
-        <button id="playPauseBtn">▶ Play</button>
-        <button id="restartBtn">⏪ Restart</button>
-        <span id="video-time">00:00 / 00:00</span>
+    <!-- 🔹 Separate Timeline Below Video -->
+    <div id="timeline-container">
+        <input type="range" id="timeline" min="0" step="0.01" value="0">
     </div>
-
-    <!-- 🔹 Input to Set Number of Caption Words -->
-    <div id="caption-controls">
-        <label for="captionLength">Words per Caption:</label>
-        <input type="number" id="captionLength" value="5" min="1" max="10">
-        <label for="captionStyle">Choose Caption Style:</label>
-        <select id="captionStyle">
-            <option value="style1">Style 1</option>
-            <option value="style2">Style 2</option>
-            <option value="style3">Style 3</option>
-            <option value="style4">Style 4</option>
-            <option value="style5">Style 5</option>
-            <option value="style6">Style 6</option>
-            <option value="style7">Style 7</option>
-            <option value="style8">Style 8</option>
-            <option value="style9">Style 9</option>
-            <option value="style10">Style 10</option>
-            <option value="none">No Caption</option>
-            <option value="block-style">Block Caption</option>
-        </select>
-    </div>
-
-    <!-- 🔹 Caption Preview -->
+    <!-- 🔹 Caption Preview 
     <div id="caption-preview" class="preview-captions-text style1">This is a caption preview</div>
-
+    -->
     <div id="word-editor-container">
-        <h3>Edit Word Timestamps</h3>
-        <div id="word-editor"></div>
+        <h3>Captions Editor</h3>
+        <div id="word-editor-wrapper">
+            <div id="word-editor"></div>
+        </div>
         <button id="save-word-changes">Save Changes</button>
     </div>
-    
+
     <div class="fontCheck">
         <span style="font-family: 'Luckiest Guy', cursive;">A</span>
         <span style="font-family: 'Anton', sans-serif">A</span>
@@ -97,8 +111,9 @@
         <span style="font-family: 'Staatliches', sans-serif">A</span>
         <span style="font-family: 'Playfair Display', serif">A</span>
         <span style="font-family: 'Archivo Black', sans-serif">A</span>
-      </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>

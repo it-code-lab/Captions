@@ -27,16 +27,5 @@ def save_word_timestamps():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# Load structured_output.json (for headings & list items)
-@app.route('/get_structured_output', methods=['GET'])
-def get_structured_output():
-    try:
-        with open("temp/structured_output.json", "r") as f:
-            data = json.load(f)
-        return jsonify(data)
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-
 if __name__ == '__main__':
     app.run(debug=True, port=5000)  # Run the server on port 5000
